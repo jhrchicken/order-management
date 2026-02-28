@@ -5,6 +5,7 @@ import kr.co.ordermanagement.application.SimpleProductService;
 import kr.co.ordermanagement.presentation.dto.ChangeStateReqeustDto;
 import kr.co.ordermanagement.presentation.dto.OrderProductRequestDto;
 import kr.co.ordermanagement.presentation.dto.OrderResponseDto;
+import org.apache.coyote.Request;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -53,5 +54,13 @@ public class OrderRestController {
         List<OrderResponseDto> orderResponseDtos = simpleOrderService.findByState(state);
 
         return ResponseEntity.ok(orderResponseDtos);
+    }
+
+    // 주문 취소 API
+    @RequestMapping(value = "/orders/{orderId}/cancel", method = RequestMethod.PATCH)
+    public ResponseEntity cancelOrderById(@PathVariable Long orderId) {
+        OrderResponseDto orderResponseDto = simpleOrderService.cancelOrderById(orderId);
+
+        return ResponseEntity.ok(orderResponseDto);
     }
 }
