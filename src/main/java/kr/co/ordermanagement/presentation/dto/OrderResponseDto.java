@@ -7,11 +7,11 @@ import java.util.List;
 
 public class OrderResponseDto {
     private Long id;
-    private List<ProductDto> orderedList;
+    private List<OrderedProductDto> orderedList;
     private Integer totalPrice;
     private State state;
 
-    public OrderResponseDto(Long id, List<ProductDto> orderedList, Integer totalPrice, State state) {
+    public OrderResponseDto(Long id, List<OrderedProductDto> orderedList, Integer totalPrice, State state) {
         this.id = id;
         this.orderedList = orderedList;
         this.totalPrice = totalPrice;
@@ -22,7 +22,7 @@ public class OrderResponseDto {
         return id;
     }
 
-    public List<ProductDto> getOrderedList() {
+    public List<OrderedProductDto> getOrderedList() {
         return orderedList;
     }
 
@@ -35,9 +35,9 @@ public class OrderResponseDto {
     }
 
     public static OrderResponseDto toDto(Order order) {
-        List<ProductDto> orderedProductDtos = order.getOrderedProducts()
+        List<OrderedProductDto> orderedProductDtos = order.getOrderedProducts()
                 .stream()
-                .map(orderedProduct -> ProductDto.toDto(orderedProduct))
+                .map(orderedProduct -> OrderedProductDto.toDto(orderedProduct))
                 .toList();
 
         OrderResponseDto orderResponseDto = new OrderResponseDto(order.getId(), orderedProductDtos, order.getTotalPrice(), order.getState());

@@ -2,6 +2,7 @@ package kr.co.ordermanagement.application;
 
 import kr.co.ordermanagement.domain.order.Order;
 import kr.co.ordermanagement.domain.order.OrderRepository;
+import kr.co.ordermanagement.domain.order.OrderedProduct;
 import kr.co.ordermanagement.domain.order.State;
 import kr.co.ordermanagement.domain.product.Product;
 import kr.co.ordermanagement.domain.product.ProductRepository;
@@ -11,7 +12,6 @@ import kr.co.ordermanagement.presentation.dto.OrderResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.plaf.BorderUIResource;
 import java.util.List;
 
 @Service
@@ -27,7 +27,7 @@ public class SimpleOrderService {
     }
 
     public OrderResponseDto createOrder(List<OrderProductRequestDto> orderProductRequestDtos) {
-        List<Product> orderedProducts = makeOrderedProducts(orderProductRequestDtos);
+        List<OrderedProduct> orderedProducts = makeOrderedProducts(orderProductRequestDtos);
         decreaseProductsAmount(orderedProducts);
 
         Order order = new Order(orderedProducts);
@@ -37,7 +37,7 @@ public class SimpleOrderService {
         return orderResponseDto;
     }
 
-    private List<Product> makeOrderedProducts(List<OrderProductRequestDto> orderProductRequestDtos) {
+    private List<OrderedProduct> makeOrderedProducts(List<OrderProductRequestDto> orderProductRequestDtos) {
         return orderProductRequestDtos
                 .stream()
                 .map(orderProductRequestDto -> {
@@ -50,7 +50,7 @@ public class SimpleOrderService {
                     product.checkEnoughAmount(orderedAmount);
 
                     // 조회 후에는 Product 생성
-                    return new Product(productId, product.getName(), product.getPrice(), orderProductRequestDto.getAmount());
+                    return new OrderedProduct(productId, product.getName(), product.getPrice(), orderProductRequestDto.getAmount());
                 }).toList();
     }
 

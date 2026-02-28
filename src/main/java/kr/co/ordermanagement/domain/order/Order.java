@@ -1,17 +1,14 @@
 package kr.co.ordermanagement.domain.order;
 
-import kr.co.ordermanagement.domain.exception.CanNotCancellableStateException;
-import kr.co.ordermanagement.domain.product.Product;
-
 import java.util.List;
 
 public class Order {
     private Long id;
-    private List<Product> orderedProducts;
+    private List<OrderedProduct> orderedProducts;
     private Integer totalPrice;
     private State state;
 
-    public Order(List<Product> orderedProducts) {
+    public Order(List<OrderedProduct> orderedProducts) {
         this.orderedProducts = orderedProducts;
         this.totalPrice = calculateTotalPrice(orderedProducts);
         this.state = State.CREATED;
@@ -21,7 +18,7 @@ public class Order {
         return id;
     }
 
-    public List<Product> getOrderedProducts() {
+    public List<OrderedProduct> getOrderedProducts() {
         return orderedProducts;
     }
 
@@ -37,7 +34,7 @@ public class Order {
         this.id = id;
     }
 
-    private Integer calculateTotalPrice(List<Product> orderedProducts) {
+    private Integer calculateTotalPrice(List<OrderedProduct> orderedProducts) {
         return orderedProducts
                 .stream()
                 .mapToInt(orderedProduct -> orderedProduct.getPrice() * orderedProduct.getAmount())

@@ -1,15 +1,11 @@
 package kr.co.ordermanagement.presentation.controller;
 
 import kr.co.ordermanagement.application.SimpleOrderService;
-import kr.co.ordermanagement.application.SimpleProductService;
 import kr.co.ordermanagement.domain.order.State;
 import kr.co.ordermanagement.presentation.dto.ChangeStateReqeustDto;
 import kr.co.ordermanagement.presentation.dto.OrderProductRequestDto;
 import kr.co.ordermanagement.presentation.dto.OrderResponseDto;
-import org.apache.coyote.Request;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

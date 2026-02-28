@@ -23,14 +23,6 @@ public class ProductDto {
         return name;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
     public static ProductDto toDto(Product product) {
         ProductDto productDto = new ProductDto(
                 product.getId(),
