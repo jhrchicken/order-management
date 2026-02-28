@@ -54,7 +54,7 @@ public class SimpleOrderService {
                 }).toList();
     }
 
-    private void decreaseProductsAmount(List<Product> orderedProducts) {
+    private void decreaseProductsAmount(List<OrderedProduct> orderedProducts) {
         orderedProducts
                 .stream()
                 .forEach(orderedProduct -> {
