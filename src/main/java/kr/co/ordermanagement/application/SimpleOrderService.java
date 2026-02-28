@@ -9,6 +9,7 @@ import kr.co.ordermanagement.presentation.dto.OrderResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.plaf.BorderUIResource;
 import java.util.List;
 
 @Service
@@ -65,4 +66,10 @@ public class SimpleOrderService {
                 });
     }
 
+    public OrderResponseDto findById(Long orderId) {
+        Order order = orderRepository.findById(orderId);
+
+        OrderResponseDto orderResponseDto = OrderResponseDto.toDto(order);
+        return orderResponseDto;
+    }
 }
