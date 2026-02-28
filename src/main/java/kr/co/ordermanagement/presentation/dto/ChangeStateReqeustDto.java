@@ -1,9 +1,11 @@
 package kr.co.ordermanagement.presentation.dto;
 
-public class ChangeStateReqeustDto {
-    private String state;
+import kr.co.ordermanagement.domain.order.State;
 
-    public String getState() {
+public class ChangeStateReqeustDto {
+    private State state;
+
+    public State getState() {
         return state;
     }
 }
