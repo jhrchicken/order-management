@@ -42,4 +42,14 @@ public class Product {
         Product product = (Product) o;
         return Objects.equals(id, product.id);
     }
+
+    public void checkEnoughAmount(Integer orderedAmount) {
+        if (this.amount < orderedAmount) {
+            throw new RuntimeException(this.id + "번 상품의 수량이 부족합니다.");
+        }
+    }
+
+    public void decreaseAmount(Integer orderedAmount) {
+        this.amount = this.amount - orderedAmount;
+    }
 }
