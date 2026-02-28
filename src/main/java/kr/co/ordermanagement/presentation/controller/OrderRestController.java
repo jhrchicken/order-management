@@ -2,9 +2,12 @@ package kr.co.ordermanagement.presentation.controller;
 
 import kr.co.ordermanagement.application.SimpleOrderService;
 import kr.co.ordermanagement.application.SimpleProductService;
+import kr.co.ordermanagement.presentation.dto.ChangeStateReqeustDto;
 import kr.co.ordermanagement.presentation.dto.OrderProductRequestDto;
 import kr.co.ordermanagement.presentation.dto.OrderResponseDto;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,4 +39,11 @@ public class OrderRestController {
         return ResponseEntity.ok(orderResponseDto);
     }
 
+    // 주문상태 강제 변경 API
+    @RequestMapping(value = "/orders/{orderId}", method = RequestMethod.PATCH)
+    public ResponseEntity<OrderResponseDto> changeOrderState(@PathVariable Long orderId, @RequestBody ChangeStateReqeustDto changeStateRequestDto) {
+        OrderResponseDto orderResponseDto = simpleOrderService.changeState(orderId, changeStateRequestDto);
+
+        return ResponseEntity.ok(orderResponseDto);
+    }
 }
