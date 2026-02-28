@@ -46,4 +46,12 @@ public class OrderRestController {
 
         return ResponseEntity.ok(orderResponseDto);
     }
+
+    // 주문상태로 조회 API
+    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    public ResponseEntity<List<OrderResponseDto>> getOrdersByState(@RequestParam String state) {
+        List<OrderResponseDto> orderResponseDtos = simpleOrderService.findByState(state);
+
+        return ResponseEntity.ok(orderResponseDtos);
+    }
 }
